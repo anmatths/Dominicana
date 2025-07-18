@@ -1,5 +1,3 @@
-/* styles/form.css */
-
 body {
   margin: 0;
   padding: 0;
@@ -9,21 +7,22 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  box-sizing: border-box;
 }
 
 form#invoiceForm {
   background-color: #ffffff;
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   width: 100%;
   max-width: 400px;
   box-sizing: border-box;
 }
 
 form h2 {
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+  font-size: 1.4rem;
   text-align: center;
   color: #333;
 }
@@ -82,12 +81,31 @@ button:hover {
   box-sizing: border-box;
 }
 
-/* Responsive tweaks */
+/* Mobile Responsive */
 @media screen and (max-width: 500px) {
-  form#invoiceForm {
+  body {
     padding: 1rem;
-    border-radius: 0;
-    box-shadow: none;
+    height: auto;
+    align-items: flex-start;
+  }
+
+  form#invoiceForm {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  }
+
+  input, button {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+
+  label {
+    font-size: 0.95rem;
+  }
+
+  #resultBox {
+    font-size: 0.9rem;
   }
 }
-``
