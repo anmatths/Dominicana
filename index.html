@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buscar Factura Disponible</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 400px;
+      margin: 40px auto;
+    }
+    input, button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 8px;
+      font-size: 1em;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h2>Buscar Factura Disponible</h2>
+  <form id="formulario">
+    <input name="usuario" placeholder="Usuario" required>
+    <input name="clave" type="password" placeholder="Clave" required>
+    <input name="rncEmisor" placeholder="RNC Emisor" required>
+    <input name="facturaInicio" placeholder="Factura inicial (E310...)" required>
+    <button type="submit">Buscar</button>
+  </form>
+  <pre id="resultado"></pre>
+
+  <script>
+    document.getElementById('formulario').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const data = Object.fromEntries(new FormData(form));
+
+      const respuesta = await fetch("https://<TUSUPABASE>.functions.supabase.co/buscar_factura", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const json = await respuesta.json();
+      document.getElementById("resultado").textContent = JSON.stringify(json, null, 2);
+    });
+  </script>
+</body>
+</html>
