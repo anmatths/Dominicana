@@ -1,39 +1,99 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Buscar Factura Disponible</title>
   <style>
+    :root {
+      --primary: #0077ff;
+      --background: #f5f7fa;
+      --card-bg: white;
+      --border: #e1e5ee;
+      --radius: 12px;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
     body {
-      font-family: sans-serif;
+      font-family: "Segoe UI", sans-serif;
+      background: var(--background);
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .form-card {
+      background: var(--card-bg);
+      padding: 32px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
       max-width: 400px;
-      margin: 40px auto;
-    }
-    input, button {
-      display: block;
       width: 100%;
-      margin: 10px 0;
-      padding: 8px;
-      font-size: 1em;
+      box-sizing: border-box;
     }
-    pre {
-      background: #f4f4f4;
-      padding: 10px;
+
+    .form-card h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+      color: #333;
+      text-align: center;
+    }
+
+    .form-card input {
+      width: 100%;
+      padding: 10px 14px;
+      margin-bottom: 15px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 1em;
+      box-sizing: border-box;
+    }
+
+    .form-card button {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .form-card button:hover {
+      background-color: #005ee0;
+    }
+
+    #resultado {
+      margin-top: 20px;
       white-space: pre-wrap;
+      font-family: monospace;
+      background: #f4f4f4;
+      padding: 12px;
+      border-radius: var(--radius);
+      font-size: 0.9em;
+      max-height: 300px;
+      overflow-y: auto;
     }
   </style>
 </head>
 <body>
-  <h2>Buscar Factura Disponible</h2>
-  <form id="formulario">
-    <input name="usuario" placeholder="Usuario" required>
-    <input name="clave" type="password" placeholder="Clave" required>
-    <input name="rncEmisor" placeholder="RNC Emisor" required>
-    <input name="facturaInicio" placeholder="Factura inicial (E310...)" required>
-    <button type="submit">Buscar</button>
-  </form>
-  <pre id="resultado"></pre>
+  <div class="form-card">
+    <h2>Buscar Factura Disponible</h2>
+    <form id="formulario">
+      <input name="usuario" placeholder="Usuario" required />
+      <input name="clave" type="password" placeholder="Clave" required />
+      <input name="rncEmisor" placeholder="RNC Emisor" required />
+      <input name="facturaInicio" placeholder="Factura inicial (E310...)" required />
+      <button type="submit">Buscar</button>
+    </form>
+    <pre id="resultado"></pre>
+  </div>
 
   <script>
     document.getElementById('formulario').addEventListener('submit', async (e) => {
